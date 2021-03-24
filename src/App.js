@@ -6,16 +6,16 @@ const Rain = () => {
       const [emojisToRender, setEmojiToRender] = useState([{key: 0 , emoji: '☠️', offset: 0 }])
 
       useInterval(() => {
-        if (emojisToRender.length > 10 ) {
+        if (emojisToRender.length > 15 ) {
             emojisToRender.shift();
         }
         const offset = Math.floor(Math.random() * 1000);
-        const key = offset + Math.floor(Math.random() * 100000);
+        const key = offset + Math.floor(Math.random() * 1000000);
         const emoji = '☠️';
 
         emojisToRender.push({offset, key, emoji})
           setEmojiToRender([...emojisToRender])
-      }, 500);
+      }, 100);
 
         return(
            <SuperContainer>
@@ -52,10 +52,12 @@ const SuperContainer = styled.div`
 const EmojiContainer = styled.div`
   @keyframes falldown {
     0% { margin-top: 0; }
-    100% { margin-top: 400px; }
+    100% { margin-top: 500px; }
     }
 
-    margin-left: ${props => props.offset}px;
+    position: absolute;
+    top: 80px;
+    left: ${props => props.offset}px;
 
     font-size: 48px;
     animation-name: falldown;
